@@ -1,16 +1,15 @@
 var fs = require('fs');
-var keys = require('./keys.js');
-var Twitter = require('twitter')
+var twitterkeys = require('./keys.js');
+var twitter = require('twitter')
 var spotify = require ('spotify')
 var request = require('request');
 
 var a = process.argv[2];
 var arg = process.argv[3];
-// var b = parseInt(process.argv[3]);
-// var c = parseInt(process.argv[4]);
+
 
 if (a === 'my-tweets' ){
-console.log('yo')
+twitterCall();
 
 }else if (a === 'spotify-this-song' ) {
 			song = arg
@@ -29,24 +28,32 @@ console.log('yo')
 	
 
 }else if (a === 'do-what-it-says' ) {
-	console.log('yo');
+	doCall();
 }
 
-// function myTweets(){
-// var client = new Twitter({
-// consumer_key: 'T56JT8swWW7FIaaRUGT6bqXqk',
-//   consumer_secret: 'wByCsRZ6gLgmM9HsGzsFAaJPLOng9fB4urIF8vBMsHuslmv4CL',
-//   access_token_key: '715890770386022400-esO0mzT3FXzqgcqTV9lBJVY2KVvNbTi',
-//   access_token_secret: 'tRw0u6M7TF3IPX350CK2AjXVtej8JSFTIWeLpAEsolwLi',
-// });
- 
-// var params = {screen_name: 'nodejs'};
-// client.get('statuses/user_timeline', params, function(error, tweets, response){
-//   if (!error) {
-//     console.log(tweets);
-//   }
-// });
-// }
+function twitterCall() {
+  var client = new twitter({
+      consumer_key: 'yhzvVJaRkLnjtFPJRooIexLtn',
+	  consumer_secret: 'tPM8UcsssaNC9kJ1wRKBXzwkk2hYbpewa148mjgLPUyqBOCntO',
+	  access_token_key: '715890770386022400-esO0mzT3FXzqgcqTV9lBJVY2KVvNbTi',
+	  access_token_secret: 'tRw0u6M7TF3IPX350CK2AjXVtej8JSFTIWeLpAEsolwLi', 
+  });
+var params = {screen_name: 'DiscoverMf'};
+client.get('statuses/user_timeline/', params, function(error, data, response){
+  if (!error) {
+    // console.log(tweets);
+  }
+    for(var i = 0; i < data.length; i++) {
+      var twitterResults = 
+        "@" + data[i].user.screen_name + ": " + 
+        data[i].text + "\r\n" + 
+        data[i].created_at + "\r\n" + 
+        "------- End Tweet -------" + "\r\n\r\n";
+      console.log(twitterResults);
+    }
+});
+}
+
 function movie(){
 	request('http://www.omdbapi.com/?t='+arg+'&y=&plot=short&tomatoes=true&r=json', function (error, response, body) {
 		obj = JSON.parse(body)
@@ -113,3 +120,14 @@ function defspot(song) {
     
   })
 }; // End spotifyCall()
+
+function doCall() {
+  fs.readFile("./random.txt", "utf8", function(error, data) {
+    if(error) {
+      console.log('Error occurred: ' + error);
+      return;
+    }
+    data = data.split(',');
+    spot(data[1]);
+  })
+}; // End doCall()
