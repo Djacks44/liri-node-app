@@ -1,0 +1,34 @@
+Invalid question try, hey, liri, my-tweets,spotify-this-song, movie-this, do-what-it-says, optionsHello user welcome to Lirimy-tweets: gets your tweets
+spotify-this-song: allows you to find spotify informatio on an song you like
+movie-this: gets information on your chosen movie
+do-what-it-says: reads a text file and completes an action
+hey: says helloArtist: Backstreet Boys
+Song: I Want It That Way
+Spotify URL: https://open.spotify.com/track/6e40mgJiCid5HRAGrbpGA6
+Album the song is from: The Hits--Chapter OneTitle: Mr. Nobody
+Year: 2009
+Imdb Rating: 7.9
+Country: Belgium, Germany, Canada, France
+Language: English, Mohawk
+Plot: A boy stands on a station platform as a train is about to leave. Should he go with his mother or stay with his father? Infinite possibilities arise from this decision. As long as he doesn't choose, anything is possible.
+Actors: Jared Leto, Sarah Polley, Diane Kruger, Linh Dan Pham
+Rotten Tomatoes Rating: 6.6
+Rotten Tomatoes URL: http://www.rottentomatoes.com/m/mr-nobody/Artist: blink-182
+Song: What's My Age Again?
+Spotify URL: https://open.spotify.com/track/5JZcX7TTLx4l0xFIXJ3DBt
+Album the song is from: Enema Of The State (Explicit Version)@DiscoverMf: yes
+Sat Apr 09 18:28:19 +0000 2016
+------- End Tweet -------
+
+@DiscoverMf: cool
+Fri Apr 08 02:43:29 +0000 2016
+------- End Tweet -------
+
+@DiscoverMf: yes
+Sat Apr 09 18:28:19 +0000 2016
+------- End Tweet -------
+
+@DiscoverMf: cool
+Fri Apr 08 02:43:29 +0000 2016
+------- End Tweet -------
+

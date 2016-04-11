@@ -9,24 +9,42 @@
 	var arg = process.argv[3];
 
 	if (a === 'my-tweets' ){
-	twitterCall();
+		twitterCall();
 
 	}else if (a === 'spotify-this-song' ) {
-	song = arg
+		song = arg
 		if (song === undefined) {
-		defspot(song);
+			defspot(song);
 		}else{
-		spot(song);
+			spot(song);
 		}
 
 	}else if (a === 'movie-this' ) {
 		if (arg === undefined) {
-		defmovie();
+			defmovie();
 		}else{
-		movie();
+			movie();
 		}
 	}else if (a === 'do-what-it-says' ) {
-	doCall();
+		doCall();
+	}else if (a === 'hey'){
+		console.log('Hello user welcome to Liri');
+		logE('Hello user welcome to Liri')
+	}else if (a === 'liri'){
+		console.log('Hello user welcome to Liri');
+		logE('Hello user welcome to Liri')
+	}else if (a === 'options'){
+		var options = 
+			'my-tweets: gets your tweets'+"\r\n"+
+			'spotify-this-song: allows you to find spotify informatio on an song you like'+"\r\n"+
+			'movie-this: gets information on your chosen movie'+"\r\n"+
+			'do-what-it-says: reads a text file and completes an action'+"\r\n"+
+			'hey: says hello';
+		console.log(options);
+		logE(options);
+	}else{
+		console.log('Invalid question try, hey, liri, my-tweets,spotify-this-song, movie-this, do-what-it-says, options')
+		logE('Invalid question try, hey, liri, my-tweets,spotify-this-song, movie-this, do-what-it-says, options')
 	}
 
 	// calls twitter and gets my tweets
@@ -43,6 +61,7 @@
     // console.log(tweets);
     // lists my tweets
   	}
+  	// counts out and displays multiple tweets
     	for(var i = 0; i < data.length; i++) {
       	var twitterResults = 
         "@" + data[i].user.screen_name + ": " + 
@@ -50,6 +69,7 @@
         data[i].created_at + "\r\n" + 
         "------- End Tweet -------" + "\r\n\r\n";
       	console.log(twitterResults);
+      	logE(twitterResults);
     	}
 	});
 	} //end twitter
@@ -58,15 +78,19 @@
 	function movie(){
 		request('http://www.omdbapi.com/?t='+arg+'&y=&plot=short&tomatoes=true&r=json', function (error, response, body) {
 		obj = JSON.parse(body)
-	   	console.log('Title: ' + obj.Title)
-	   	console.log('Year: ' + obj.Year)
-	   	console.log('Imdb Rating: ' + obj.imdbRating)
-	   	console.log('Country: ' + obj.Country)
-	   	console.log('Language: ' +obj.Language)
-	   	console.log('Plot: ' +obj.Plot)
-	   	console.log('Actors: ' +obj.Actors)
-	   	console.log('Rotten Tomatoes Rating: ' +obj.tomatoRating)
-	   	console.log('Rotten Tomatoes URL: ' +obj.tomatoURL)
+		//logs movie responces into variable and logs it
+	   	var mResponse =
+		   	'Title: ' + obj.Title+"\r\n"+
+		   	'Year: ' + obj.Year+"\r\n"+
+		   	'Imdb Rating: ' + obj.imdbRating+"\r\n"+
+		   	'Country: ' + obj.Country+"\r\n"+
+		   	'Language: ' +obj.Language+"\r\n"+
+		   	'Plot: ' +obj.Plot+"\r\n"+
+		   	'Actors: ' +obj.Actors+"\r\n"+
+		   	'Rotten Tomatoes Rating: ' +obj.tomatoRating+"\r\n"+
+		   	'Rotten Tomatoes URL: ' +obj.tomatoURL;
+	   	console.log(mResponse);
+	   	logE(mResponse);
 	});
 	}//end movie
 
@@ -74,15 +98,18 @@
 	function defmovie(){
 		request('http://www.omdbapi.com/?t=mr.nobody&y=&plot=short&tomatoes=true&r=json', function (error, response, body) {
 		obj = JSON.parse(body)
-   		console.log('Title: ' + obj.Title)
-   		console.log('Year: ' + obj.Year)
-   		console.log('Imdb Rating: ' + obj.imdbRating)
-   		console.log('Country: ' + obj.Country)
-   		console.log('Language: ' +obj.Language)
-   		console.log('Plot: ' +obj.Plot)
-   		console.log('Actors: ' +obj.Actors)
-   		console.log('Rotten Tomatoes Rating: ' +obj.tomatoRating)
-   		console.log('Rotten Tomatoes URL: ' +obj.tomatoURL)
+   		var mResponse =
+		   	'Title: ' + obj.Title+"\r\n"+
+		   	'Year: ' + obj.Year+"\r\n"+
+		   	'Imdb Rating: ' + obj.imdbRating+"\r\n"+
+		   	'Country: ' + obj.Country+"\r\n"+
+		   	'Language: ' +obj.Language+"\r\n"+
+		   	'Plot: ' +obj.Plot+"\r\n"+
+		   	'Actors: ' +obj.Actors+"\r\n"+
+		   	'Rotten Tomatoes Rating: ' +obj.tomatoRating+"\r\n"+
+		   	'Rotten Tomatoes URL: ' +obj.tomatoURL;
+	   	console.log(mResponse)
+	   	logE(mResponse);
 	});
 	}//end defmovie
 
@@ -94,12 +121,15 @@
       	return;
    		}
     	var info = data.tracks.items[0];
-    // console.log(info);
-
-    	console.log('Artist: ' +info.artists[0].name);
-    	console.log('Song: ' +info.name);
-    	console.log('Spotify URL: ' +info.external_urls.spotify)
-    	console.log('Album song is from: ' +info.album.name);   
+    	// console.log(info);
+    	//logs spotify responces into variable and logs it
+    	var sResponse =
+    		'Artist: ' +info.artists[0].name+"\r\n"+
+    		'Song: ' +info.name+"\r\n"+
+    		'Spotify URL: ' +info.external_urls.spotify+"\r\n"+
+    		'Album the song is from: ' +info.album.name;
+    	console.log(sResponse);
+    	logE(sResponse);   
   	})
 	}; // End spot()
 
@@ -112,11 +142,13 @@
     	}
     	var info = data.tracks.items[0];
     	// console.log(info);
-
-    	console.log('Artist: ' +info.artists[0].name);
-    	console.log('Song: ' +info.name);
-    	console.log('Spotify URL: ' +info.external_urls.spotify)
-    	console.log('Album song is from: ' +info.album.name);  
+    	var sResponse =
+    		'Artist: ' +info.artists[0].name+"\r\n"+
+    		'Song: ' +info.name+"\r\n"+
+    		'Spotify URL: ' +info.external_urls.spotify+"\r\n"+
+    		'Album the song is from: ' +info.album.name;
+    	console.log(sResponse);
+    	logE(sResponse);   
   	})
 	}; // End spotifyCall()
 
@@ -131,3 +163,12 @@
     	spot(data[1]);
   	})
 	}; // End doCall()
+
+	//logE logs everthing you ask liri to do in a txt flie, also a little math humour
+	function logE(ln) {
+  		fs.appendFile("./log.txt", ln, (error) => {
+    	if(error) {
+      	throw error;
+    	}
+  	})
+	};
